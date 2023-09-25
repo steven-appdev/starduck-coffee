@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "YjZLyMgLjT9k7CI04muEKjMH3+HUapric7PZGWkrZp7fQQOfUnlPol+LhEKVvot7IxyrJmmLi4do4u9ts9Gvxw==",
+  "success": true,
+  "projectFilePath": "D:\\Project\\coffee-jam-2023\\Coffee Jam 2023.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\StevenTan\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "C:\\Users\\StevenTan\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.3\\microsoft.netframework.referenceassemblies.net472.1.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

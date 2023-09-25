@@ -1,0 +1,9 @@
+D:\Project\coffee-jam-2023\.mono\temp\bin\Debug\Coffee Jam 2023.dll
+D:\Project\coffee-jam-2023\.mono\temp\bin\Debug\Coffee Jam 2023.pdb
+D:\Project\coffee-jam-2023\.mono\temp\obj\Debug\Coffee Jam 2023.csproj.AssemblyReference.cache
+D:\Project\coffee-jam-2023\.mono\temp\obj\Debug\Coffee Jam 2023.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\coffee-jam-2023\.mono\temp\obj\Debug\Coffee Jam 2023.AssemblyInfoInputs.cache
+D:\Project\coffee-jam-2023\.mono\temp\obj\Debug\Coffee Jam 2023.AssemblyInfo.cs
+D:\Project\coffee-jam-2023\.mono\temp\obj\Debug\Coffee Jam 2023.csproj.CoreCompileInputs.cache
+D:\Project\coffee-jam-2023\.mono\temp\obj\Debug\Coffee Jam 2023.dll
+D:\Project\coffee-jam-2023\.mono\temp\obj\Debug\Coffee Jam 2023.pdb

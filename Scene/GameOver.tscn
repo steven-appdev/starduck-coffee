@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Font/EraserDust.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sound/gameover.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Font/EraserRegular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Script/GameOver.cs" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 150
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 0
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Text" type="Label" parent="."]
+margin_left = 240.0
+margin_top = 168.0
+margin_right = 1036.0
+margin_bottom = 327.0
+custom_fonts/font = SubResource( 1 )
+text = "mocha DIED"
+align = 1
+valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 544.0
+margin_top = 320.0
+margin_right = 745.0
+margin_bottom = 359.0
+custom_fonts/font = SubResource( 2 )
+text = "Game Over"
+
+[node name="Highscore" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 424.0
+margin_right = 1258.0
+margin_bottom = 463.0
+custom_fonts/font = SubResource( 2 )
+text = "Your highscore is 9999"
+align = 1
+valign = 1
+
+[node name="Highscore2" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 536.0
+margin_right = 1258.0
+margin_bottom = 575.0
+custom_fonts/font = SubResource( 2 )
+text = "Press 'esc' to return to main menu"
+align = 1
+valign = 1

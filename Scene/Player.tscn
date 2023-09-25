@@ -1,0 +1,104 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Sprite/player-walk.png" type="Texture" id=1]
+[ext_resource path="res://Script/Player.cs" type="Script" id=2]
+[ext_resource path="res://Sprite/player-idle.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/bubble-coffee.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/player-dead.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 25 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.00008, 80 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+modulate = Color( 0.960784, 0.960784, 0.960784, 1 )
+position = Vector2( 0.250001, 4.76837e-07 )
+scale = Vector2( 0.85, 0.85 )
+frames = SubResource( 5 )
+animation = "idle"
+playing = true
+
+[node name="Bubble" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -51 )
+scale = Vector2( 0.992188, 1 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="InteractPoint" type="Area2D" parent="."]
+rotation = 4.71239
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractPoint"]
+position = Vector2( -7.76052e-05, -80 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="InteractPoint" to="." method="OnInteractPointAreaEntered"]
+[connection signal="area_exited" from="InteractPoint" to="." method="OnInteractPointAreaExited"]
+[connection signal="body_entered" from="InteractPoint" to="." method="OnInteractPointBodyEntered"]
+[connection signal="body_exited" from="InteractPoint" to="." method="OnInteractPointBodyExited"]

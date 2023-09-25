@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Script/Mixer.cs" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 106.5 )
+
+[node name="Mixer" type="StaticBody2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, 74.5 )
+scale = Vector2( 1, 3.32813 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 74.5 )
+shape = SubResource( 1 )
+
+[node name="MixerName" type="Label" parent="."]
+visible = false
+margin_left = -153.0
+margin_top = -57.0
+margin_right = 154.0
+margin_bottom = -43.0
+text = "Mix Table"
+align = 1
+valign = 1
