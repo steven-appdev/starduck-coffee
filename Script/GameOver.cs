@@ -16,7 +16,8 @@ public class GameOver : CanvasLayer
     {
         if(Input.IsActionJustPressed("ui_cancel"))
         {
-            GetNode<Dissolve>("/root/Dissolve").ChangeScene("res://Scene/MainMenu.tscn");
+            var dissolve = GetNode<Dissolve>("/root/Dissolve");
+            dissolve.ChangeScene("res://Scene/MainMenu.tscn");
         }
     }
 }
