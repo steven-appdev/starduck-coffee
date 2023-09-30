@@ -14,7 +14,6 @@ public class Mixer : StaticBody2D
         lblMixerName = GetNode<Label>("MixerName");
         Menu menu = new Menu();
         coffees = menu.RetrieveMenu();
-        GD.Print(coffees.Count);
     }
 
     public void DisplayMixerName()

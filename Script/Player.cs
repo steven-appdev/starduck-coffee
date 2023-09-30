@@ -15,6 +15,7 @@ public class Player : KinematicBody2D
     private Mixer mixer;
     private Customer customer;
     private Ingredients ingredient;
+    private CanvasLayer recipeInfo;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -23,6 +24,7 @@ public class Player : KinematicBody2D
         playerSprite = GetNode<AnimatedSprite>("AnimatedSprite");
         bubble = GetNode<Sprite>("Bubble");
         interactPoint = GetNode<Area2D>("InteractPoint");
+        recipeInfo = GetParent().GetNode<CanvasLayer>("RecipeMenu");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +34,7 @@ public class Player : KinematicBody2D
         {
             PlayerMovement((float)delta);
             PlayerInteract();
+            HelpMenu();
 
             if(isHoldingCoffee)
             {
@@ -121,7 +124,6 @@ public class Player : KinematicBody2D
             {
                 if(isLookingAtCust)
                 {
-                    GD.Print(playerCurrentHolding[0]);
                     customer.AcceptOrder(playerCurrentHolding[0]);
                     ClearInventory();
                 }
@@ -132,6 +134,14 @@ public class Player : KinematicBody2D
                 ClearInventory();
                 isHoldingCoffee = false;
             }
+        }
+    }
+
+    private void HelpMenu()
+    {
+        if(Input.IsActionJustPressed("player_help"))
+        {
+            recipeInfo.Visible = !recipeInfo.Visible; 
         }
     }
 

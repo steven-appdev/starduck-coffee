@@ -13,8 +13,8 @@ public class Master : Node2D
     private bool isGameOver = false;
     private Timer customerSpawnTimer;
     private int playerPoint = 0;
-    private int playerHealth = 1;
-    private AnimationPlayer gameOverAnimation;
+    private int playerHealth = 5;
+    private AnimationPlayer gameOverAnimation, itemPanelAnimation;
 
     public Master()
     {
@@ -26,9 +26,10 @@ public class Master : Node2D
     {
         customerSpawnTimer = GetNode<Timer>("CustomerSpawnTimer");
         lblCurrentItem = GetNode<Label>("HUD/CurrentItemPanel/CurrentItem");
-        lblMoney = GetNode<Label>("HUD/Panel/Money");
-        lblHealth = GetNode<Label>("HUD/Panel/TextureRect/Health");
+        lblMoney = GetNode<Label>("HUD/MoneyIcon/Money");
+        lblHealth = GetNode<Label>("HUD/HeartIcon/Health");
         gameOverAnimation = GetNode<AnimationPlayer>("AnimationPlayer");
+        itemPanelAnimation = GetNode<AnimationPlayer>("HUD/ItemPanelAnimation");
         lblHealth.Text = playerHealth.ToString();
         customerSpawnTimer.Start();
     }
@@ -36,6 +37,7 @@ public class Master : Node2D
     public void UpdateCurrentItem(List<string> items)
     {
         string currentItems = null;
+        itemPanelAnimation.Play("AddNewItem");
         foreach(string i in items)
         {
             currentItems += "\n"+ i;
@@ -101,7 +103,7 @@ public class Master : Node2D
     public void PlayerGetPoint(int point)
     {
         playerPoint += point;
-        lblMoney.Text = "Money Earned: $"+playerPoint;
+        lblMoney.Text = "$"+playerPoint;
     }
 
     public void TogglePathAvailability(int index)
