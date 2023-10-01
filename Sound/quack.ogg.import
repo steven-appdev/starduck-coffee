@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/quack.ogg-48a8b1a493a93c8afd67a18336d993bd.oggstr"
+
+[deps]
+
+source_file="res://Sound/quack.ogg"
+dest_files=[ "res://.import/quack.ogg-48a8b1a493a93c8afd67a18336d993bd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

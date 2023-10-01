@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/timeup.ogg-0ec5fe97189f53da5fda4bb3e26f34af.oggstr"
+
+[deps]
+
+source_file="res://Sound/timeup.ogg"
+dest_files=[ "res://.import/timeup.ogg-0ec5fe97189f53da5fda4bb3e26f34af.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

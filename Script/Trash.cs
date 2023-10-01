@@ -3,20 +3,38 @@ using System;
 
 public class Trash : StaticBody2D
 {
-    private Label lblTrashName;
+    private Sprite bubble;
+    private AnimationPlayer bubbleAnimation;
+    private AudioStreamPlayer audio;
 
     public override void _Ready()
     {
-        lblTrashName = GetNode<Label>("TrashName");
+        bubble = GetNode<Sprite>("Bubble");
+        bubbleAnimation = GetNode<AnimationPlayer>("BubbleAnimation");
+        audio = GetNode<AudioStreamPlayer>("Audio");
     }
 
-    public void DisplayTrashName()
+    public void DisplayTrash()
     {
-        lblTrashName.Visible = true;
+        bubble.Visible = true;
+        bubbleAnimation.Play("BubbleDisplay");
     }
 
-    public void HideTrashName()
+    public void HideTrash()
     {
-        lblTrashName.Visible = false;
+        bubbleAnimation.Play("BubbleHide");
+    }
+
+    public void PlayAudio()
+    {
+        audio.Play();
+    }
+
+    public void OnBubbleAnimationAnimationFinished(string anim)
+    {
+        if(anim == "BubbleHide")
+        {
+            bubble.Visible = false;
+        }
     }
 }

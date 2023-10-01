@@ -1,0 +1,225 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://Sprite/customer-angry.png" type="Texture" id=1]
+[ext_resource path="res://Sprite/trash.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/think-trash.png" type="Texture" id=3]
+[ext_resource path="res://Script/Instruction3.cs" type="Script" id=4]
+[ext_resource path="res://Sprite/player-dead.png" type="Texture" id=5]
+[ext_resource path="res://Font/EraserRegular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Sprite/player-idle.png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=21]
+size = 72
+font_data = ExtResource( 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=26]
+size = 42
+font_data = ExtResource( 8 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 29 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 576, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 640, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 704, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 768, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 832, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 896, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=46]
+animations = [ {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=47]
+size = 48
+font_data = ExtResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 0
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -96.0
+margin_right = 215.0
+margin_bottom = 111.0
+color = Color( 0.545098, 0.25098, 0.25098, 1 )
+
+[node name="Text" type="Label" parent="."]
+margin_left = 344.0
+margin_top = 48.0
+margin_right = 932.0
+margin_bottom = 154.0
+custom_fonts/font = SubResource( 21 )
+text = "how to play?"
+align = 1
+valign = 1
+
+[node name="ClearItem" type="Node" parent="."]
+
+[node name="Player" type="AnimatedSprite" parent="ClearItem"]
+position = Vector2( 121, 344 )
+scale = Vector2( 1.53125, 1.53125 )
+frames = SubResource( 27 )
+frame = 1
+playing = true
+flip_h = true
+
+[node name="Sprite" type="Sprite" parent="ClearItem"]
+position = Vector2( 217, 344 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+
+[node name="Bubble" type="Sprite" parent="ClearItem/Sprite"]
+position = Vector2( -5.33332, -58.6667 )
+scale = Vector2( 1.07558, 1.08671 )
+texture = ExtResource( 3 )
+
+[node name="Text" type="Label" parent="ClearItem"]
+margin_left = 281.0
+margin_top = 280.0
+margin_right = 869.0
+margin_bottom = 386.0
+custom_fonts/font = SubResource( 26 )
+text = "Clear
+holding item"
+valign = 1
+
+[node name="TimesUp" type="Node" parent="."]
+
+[node name="Player" type="AnimatedSprite" parent="TimesUp"]
+position = Vector2( 816, 340 )
+scale = Vector2( 1.39062, 1.39062 )
+frames = SubResource( 30 )
+playing = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="TimesUp"]
+position = Vector2( 704, 324 )
+scale = Vector2( 1.75, 1.875 )
+frames = SubResource( 46 )
+frame = 5
+speed_scale = 2.0
+playing = true
+
+[node name="Text" type="Label" parent="TimesUp"]
+margin_left = 888.0
+margin_top = 276.0
+margin_right = 1476.0
+margin_bottom = 382.0
+custom_fonts/font = SubResource( 26 )
+text = "dont let the
+timer run out"
+valign = 1
+
+[node name="Back" type="Button" parent="."]
+margin_left = 136.0
+margin_top = 544.0
+margin_right = 601.0
+margin_bottom = 641.0
+custom_fonts/font = SubResource( 47 )
+action_mode = 0
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="OnBackPressed"]

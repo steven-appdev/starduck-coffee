@@ -83,6 +83,7 @@ tracks/0/keys = {
 }
 
 [node name="Dissolve" type="CanvasLayer"]
+layer = 99
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

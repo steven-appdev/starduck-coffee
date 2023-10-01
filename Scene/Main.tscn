@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/MilkTray.tscn" type="PackedScene" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://Sprite/notepad.png" type="Texture" id=19]
 [ext_resource path="res://Sprite/money-bag.png" type="Texture" id=20]
 [ext_resource path="res://Scene/Recipe.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Sprite/counter.png" type="Texture" id=22]
+[ext_resource path="res://Sound/quack.ogg" type="AudioStream" id=23]
 
 [sub_resource type="TileSet" id=8]
 0/name = "floor.png 0"
@@ -263,17 +265,58 @@ tracks/4/keys = {
 "values": [ 24 ]
 }
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.192157, 0.109804, 0.00784314, 1 )
+[sub_resource type="TileSet" id=21]
+0/name = "counter.png 0"
+0/texture = ExtResource( 22 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "counter.png 1"
+1/texture = ExtResource( 22 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 64, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "counter.png 2"
+2/texture = ExtResource( 22 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 128, 64, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 24.25, 420 )
+extents = Vector2( 32.758, 420 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 704, 37 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 46.5, 376 )
+extents = Vector2( 71.4953, 376 )
 
 [sub_resource type="Curve2D" id=5]
 _data = {
@@ -363,6 +406,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("AudioManager/Death:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -425,6 +480,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AudioManager/Death:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
 
 [node name="Main" type="Node2D"]
@@ -522,15 +589,14 @@ anims/RESET = SubResource( 19 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
-[node name="Panel" type="Panel" parent="Wall"]
-margin_left = 854.0
-margin_top = 48.0
-margin_right = 901.0
-margin_bottom = 768.0
-custom_styles/panel = SubResource( 4 )
+[node name="Counter" type="TileMap" parent="Wall"]
+tile_set = SubResource( 21 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 458805, 0, 0, 720949, 1, 0, 917557, 1, 0, 983093, 1, 0, 1179701, 1, 0, 1310773, 1, 0, 1376309, 1, 0, 1441845, 1, 0, 1507381, 1, 0, 1572917, 1, 0, 1638453, 1, 0, 1703989, 1, 0, 1769525, 1, 0, 1835061, 1, 0, 1900597, 1, 0, 1966133, 1, 0, 2031669, 1, 0, 2097205, 1, 0, 2162741, 1, 0, 2228277, 1, 0, 2293813, 1, 0, 2359349, 1, 0, 2555957, 1, 0, 2752565, 1, 0, 2883637, 2, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2( 878, 436 )
+position = Vector2( 880.189, 436 )
 shape = SubResource( 3 )
 
 [node name="Wall" type="CollisionShape2D" parent="Wall"]
@@ -542,7 +608,7 @@ position = Vector2( 640, 803 )
 shape = SubResource( 9 )
 
 [node name="Wall3" type="CollisionShape2D" parent="Wall"]
-position = Vector2( 1297.5, 392 )
+position = Vector2( 1272.5, 392 )
 shape = SubResource( 15 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -552,20 +618,20 @@ playerSpeed = 250
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2( 0.2, 0.2 )
 
-[node name="MilkTray" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1211.76, 175.723 )
+[node name="Water" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1240.76, 182.67 )
 
 [node name="CoffeeMaker" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1213.17, 265.581 )
-
-[node name="Water" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1211.76, 589.296 )
+position = Vector2( 1236.97, 293.768 )
 
 [node name="Mixer" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1211.76, 358.267 )
+position = Vector2( 1238.94, 386.007 )
+
+[node name="MilkTray" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1231.28, 669.472 )
 
 [node name="Trash" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1213.17, 676.728 )
+position = Vector2( 974.708, 714.566 )
 
 [node name="Paths" type="Node" parent="."]
 
@@ -615,6 +681,13 @@ loop = false
 [node name="CustomerSpawnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/GameOver = SubResource( 16 )
+anims/RESET = SubResource( 17 )
+
+[node name="RecipeMenu" parent="." instance=ExtResource( 21 )]
+visible = false
+
 [node name="AudioManager" type="Node" parent="."]
 
 [node name="BGM" type="AudioStreamPlayer" parent="AudioManager"]
@@ -626,12 +699,10 @@ autoplay = true
 stream = ExtResource( 17 )
 volume_db = -10.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/GameOver = SubResource( 16 )
-anims/RESET = SubResource( 17 )
-
-[node name="RecipeMenu" parent="." instance=ExtResource( 21 )]
-visible = false
+[node name="Death" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource( 23 )
+volume_db = 10.0
+pitch_scale = 0.1
 
 [connection signal="timeout" from="CustomerSpawnTimer" to="." method="OnCustomerSpawnTimerTimeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationPlayerAnimationFinished"]

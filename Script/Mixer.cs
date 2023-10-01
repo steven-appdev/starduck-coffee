@@ -5,20 +5,25 @@ using System.Linq;
 
 public class Mixer : StaticBody2D
 {
-    private Label lblMixerName;
     private List<Coffee> coffees;
     private Master master;
+    private Sprite bubble;
+    private AnimationPlayer bubbleAnimation;
+    private AudioStreamPlayer audio;
 
     public override void _Ready()
     {
-        lblMixerName = GetNode<Label>("MixerName");
+        bubble = GetNode<Sprite>("Bubble");
+        bubbleAnimation = GetNode<AnimationPlayer>("BubbleAnimation");
         Menu menu = new Menu();
         coffees = menu.RetrieveMenu();
+        audio = GetNode<AudioStreamPlayer>("Audio");
     }
 
-    public void DisplayMixerName()
+    public void DisplayMixer()
     {
-        lblMixerName.Visible = true;
+        bubble.Visible = true;
+        bubbleAnimation.Play("BubbleDisplay");
     }
 
     public Coffee StartMixing(List<string> ingredients)
@@ -31,8 +36,21 @@ public class Mixer : StaticBody2D
         return null;
     }
 
-    public void HideMixerName()
+    public void HideMixer()
     {
-        lblMixerName.Visible = false;
+        bubbleAnimation.Play("BubbleHide");
+    }
+
+    public void PlayAudio()
+    {
+        audio.Play();
+    }
+
+    public void OnBubbleAnimationAnimationFinished(string anim)
+    {
+        if(anim == "BubbleHide")
+        {
+            bubble.Visible = false;
+        }
     }
 }

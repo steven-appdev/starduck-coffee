@@ -16,6 +16,7 @@ public class Customer : KinematicBody2D
     private List<Coffee> coffees;
     private Coffee order;
     private AnimatedSprite customerSprite, customerBubble;
+    private AudioStreamPlayer audio;
     
     public override void _Ready()
     {
@@ -25,8 +26,10 @@ public class Customer : KinematicBody2D
         customerBubble = GetNode<AnimatedSprite>("Bubble");
         customerPath = (PathFollow2D)GetParent();
         customerPatienceTimer = GetNode<Timer>("PatienceTimer");
+        customerPatienceTimer.WaitTime = new Random().Next(7,16);
         lblCustomerOrder = GetNode<Label>("Bubble/CustomerOrder");
         lblPatienceTimer = GetNode<Label>("Bubble/Timer");
+        audio = GetNode<AudioStreamPlayer>("Audio");
     }
 
     public override void _Process(float delta)
@@ -113,6 +116,7 @@ public class Customer : KinematicBody2D
     {
         customerBubble.Animation = "angry";
         customerSprite.Animation = "angry";
+        audio.Play();
         isCustomerAngry = true;
     }
 

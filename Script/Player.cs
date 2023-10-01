@@ -13,9 +13,11 @@ public class Player : KinematicBody2D
     private bool isLookingAtIngredients = false, isHoldingCoffee = false, isLookingAtMixer = false, isLookingAtTrash = false, isLookingAtCust = false;
     private Master master;
     private Mixer mixer;
+    private Trash trash;
     private Customer customer;
     private Ingredients ingredient;
     private CanvasLayer recipeInfo;
+    private AudioStreamPlayer quack;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -25,6 +27,7 @@ public class Player : KinematicBody2D
         bubble = GetNode<Sprite>("Bubble");
         interactPoint = GetNode<Area2D>("InteractPoint");
         recipeInfo = GetParent().GetNode<CanvasLayer>("RecipeMenu");
+        quack = GetNode<AudioStreamPlayer>("Audio");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,15 +38,7 @@ public class Player : KinematicBody2D
             PlayerMovement((float)delta);
             PlayerInteract();
             HelpMenu();
-
-            if(isHoldingCoffee)
-            {
-                bubble.Visible = true;
-            }
-            else
-            {
-                bubble.Visible = false;
-            }
+            bubble.Visible = isHoldingCoffee;
         }
         else
         {
@@ -105,6 +100,7 @@ public class Player : KinematicBody2D
                 if(isLookingAtIngredients && playerCurrentHolding.Count < 4)
                 {
                     playerCurrentHolding.Add(ingredient.GetIngredientItem());
+                    ingredient.PlayAudio();
                     master.UpdateCurrentItem(playerCurrentHolding);
                 }
 
@@ -113,6 +109,7 @@ public class Player : KinematicBody2D
                     Coffee coffee = mixer.StartMixing(playerCurrentHolding);
                     if(coffee != null)
                     {
+                        mixer.PlayAudio();
                         isHoldingCoffee = true;
                         playerCurrentHolding.Clear();
                         playerCurrentHolding.Add(coffee.RecipeName);
@@ -125,6 +122,7 @@ public class Player : KinematicBody2D
                 if(isLookingAtCust)
                 {
                     customer.AcceptOrder(playerCurrentHolding[0]);
+                    quack.Play();
                     ClearInventory();
                 }
             }
@@ -132,6 +130,7 @@ public class Player : KinematicBody2D
             if(isLookingAtTrash && playerCurrentHolding.Count > 0)
             {
                 ClearInventory();
+                trash.PlayAudio();
                 isHoldingCoffee = false;
             }
         }
@@ -157,21 +156,21 @@ public class Player : KinematicBody2D
         if(body is Ingredients)
         {
             ingredient = (Ingredients)body;
-            ingredient.DisplayIngredientName();
+            ingredient.DisplayIngredient();
             isLookingAtIngredients = true;
         }
 
         if(body is Mixer)
         {
             mixer = (Mixer)body;
-            mixer.DisplayMixerName();
+            mixer.DisplayMixer();
             isLookingAtMixer = true;
         }
 
         if(body is Trash)
         {
-            var trash = (Trash)body;
-            trash.DisplayTrashName();
+            trash = (Trash)body;
+            trash.DisplayTrash();
             isLookingAtTrash = true;
         }
 
@@ -186,22 +185,22 @@ public class Player : KinematicBody2D
     {
         if(body is Ingredients)
         {
-            ingredient.HideIngredientName();
+            ingredient.HideIngredient();
             ingredient = null;
             isLookingAtIngredients = false;
         }
 
         if(body is Mixer)
         {
-            mixer.HideMixerName();
+            mixer.HideMixer();
             mixer = null;
             isLookingAtMixer = false;
         }
 
         if(body is Trash)
         {
-            var trash = (Trash)body;
-            trash.HideTrashName();
+            trash.HideTrash();
+            trash = null;
             isLookingAtTrash = false;
         }
 
@@ -211,22 +210,4 @@ public class Player : KinematicBody2D
             isLookingAtCust = false;
         }
     }
-
-    // public void OnInteractPointAreaEntered(Area2D area)
-    // {
-    //     if(area is Customer)
-    //     {
-    //         customer = (Customer)area;
-    //         isLookingAtCust = true;
-    //     }
-    // }
-
-    // public void OnInteractPointAreaExited(Area2D area)
-    // {
-    //     if(area is Customer)
-    //     {
-    //         customer = null;
-    //         isLookingAtCust = false;
-    //     }
-    // }
 }

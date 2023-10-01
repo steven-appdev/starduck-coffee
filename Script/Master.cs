@@ -13,7 +13,7 @@ public class Master : Node2D
     private bool isGameOver = false;
     private Timer customerSpawnTimer;
     private int playerPoint = 0;
-    private int playerHealth = 5;
+    private int playerHealth = 3;
     private AnimationPlayer gameOverAnimation, itemPanelAnimation;
 
     public Master()
@@ -25,13 +25,25 @@ public class Master : Node2D
     public override void _Ready()
     {
         customerSpawnTimer = GetNode<Timer>("CustomerSpawnTimer");
+
         lblCurrentItem = GetNode<Label>("HUD/CurrentItemPanel/CurrentItem");
         lblMoney = GetNode<Label>("HUD/MoneyIcon/Money");
         lblHealth = GetNode<Label>("HUD/HeartIcon/Health");
+
         gameOverAnimation = GetNode<AnimationPlayer>("AnimationPlayer");
         itemPanelAnimation = GetNode<AnimationPlayer>("HUD/ItemPanelAnimation");
+
         lblHealth.Text = playerHealth.ToString();
         customerSpawnTimer.Start();
+    }
+
+    public override void _Process(float delta)
+    {
+        if(Input.IsActionJustPressed("ui_cancel"))
+        {
+            var dissolve = GetNode<Dissolve>("/root/Dissolve");
+            dissolve.ChangeScene("res://Scene/MainMenu.tscn");
+        }
     }
 
     public void UpdateCurrentItem(List<string> items)

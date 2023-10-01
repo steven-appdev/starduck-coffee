@@ -7,17 +7,21 @@ public class Ingredients : StaticBody2D
     private string ingredientName = "placeholder";
     [Export]
     private string ingredientItem = "null";
-    private Label lblIngredientName;
+    private Sprite bubble;
+    private AnimationPlayer bubbleAnimation;
+    private AudioStreamPlayer audio;
 
     public override void _Ready()
     {
-        lblIngredientName = GetNode<Label>("ObjectiveName");
+        bubble = GetNode<Sprite>("Bubble");
+        bubbleAnimation = GetNode<AnimationPlayer>("BubbleAnimation");
+        audio = GetNode<AudioStreamPlayer>("Audio");
     }
 
-    public void DisplayIngredientName()
+    public void DisplayIngredient()
     {
-        lblIngredientName.Text = ingredientName;
-        lblIngredientName.Visible = true;
+        bubble.Visible = true;
+        bubbleAnimation.Play("BubbleDisplay");
     }
 
     public string GetIngredientItem()
@@ -25,8 +29,21 @@ public class Ingredients : StaticBody2D
         return ingredientItem;
     }
 
-    public void HideIngredientName()
+    public void HideIngredient()
     {
-        lblIngredientName.Visible = false;
+        bubbleAnimation.Play("BubbleHide");
+    }
+
+    public void PlayAudio()
+    {
+        audio.Play();
+    }
+
+    public void OnBubbleAnimationAnimationFinished(string anim)
+    {
+        if(anim == "BubbleHide")
+        {
+            bubble.Visible = false;
+        }
     }
 }
